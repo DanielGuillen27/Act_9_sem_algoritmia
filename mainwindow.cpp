@@ -267,36 +267,28 @@ void MainWindow::on_btnVer_clicked()
     int x = 10;
     nuevo = lista.getFirstPos();
 
+    QColor color;
+
     while(nuevo != nullptr){
 
     n = lista.retrieve(nuevo);
     nuevo = lista.getNextPos(nuevo);
-    QGraphicsEllipseItem *ellipse = scene->addEllipse(x, 10, 95, 150, blackPen, blueBrush);
+    color.setGreen(n.getGreen());
+    color.setBlue(n.getBlue());
+    color.setRed(n.getRed());
 
-    // Crea un nuevo elemento de texto para este elipse
-    QGraphicsTextItem *text = new QGraphicsTextItem;
-    text->setPos(x + 20, 30); // Ajusta la posición del texto dentro del elipse
+    QGraphicsEllipseItem *ellipse = scene->addEllipse(n.getPosicionX(), n.getPosicionY(), n.getVoltaje(), n.getVoltaje(), blackPen, color);
 
-    QColor textColor = Qt::white; // Cambia el color a tu preferencia
-    text->setDefaultTextColor(textColor);
-
-    // Establece el texto que deseas en este elemento de texto
-    QString textoAEscribir = QString::number(n.getId())+"\n" + QString::number(n.getVoltaje())+"\n"
-                             +QString::number(n.getPosicionX())
-                             +"\n" + QString::number(n.getPosicionY())
-                             +"\n"+ QString::number(n.getRed())
-                             +"\n"+ QString::number(n.getBlue())
-                             +"\n"+ QString::number(n.getGreen()) ; // Cambia "Texto" por tus datos
-    //ingresamos los datos a la scena o al view
-    text->setPlainText(textoAEscribir);
-
-    // Agrega el elipse y el elemento de texto a la escena
     scene->addItem(ellipse);
-    scene->addItem(text);
 
-     x += 110;
     }
 
 
+}
+
+
+void MainWindow::on_btnLimpiar_clicked()
+{
+    scene->clear();
 }
 

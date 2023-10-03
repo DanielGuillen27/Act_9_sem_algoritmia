@@ -624,6 +624,8 @@ private slots:
 
     void on_btnVer_clicked();
 
+    void on_btnLimpiar_clicked();
+
 private:
     Ui::MainWindow *ui;
     Neurona n;
